@@ -27,7 +27,7 @@ namespace GuestControlApi.Auth
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("subject", payload.sub),
                 new Claim("name", payload.name),
-                new Claim("subjectId", payload.subId.ToString())
+                new Claim("subjectId", payload.subId)
             };
 
             //Adiciona os grupos

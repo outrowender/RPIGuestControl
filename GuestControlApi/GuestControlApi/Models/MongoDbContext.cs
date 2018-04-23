@@ -29,8 +29,11 @@ namespace GuestControlApi.Models
                 throw new Exception("Não foi possível se conectar com o servidor.", ex);
             }
         }
+
+        public IMongoDatabase GetDatabase => _database;
         public IMongoCollection<Pessoas> Pessoas => _database.GetCollection<Pessoas>("Pessoas");
         public IMongoCollection<Registros> Registros => _database.GetCollection<Registros>("Registros");
         public IMongoCollection<Departamentos> Departamentos => _database.GetCollection<Departamentos>("Departamentos");
+        
     }
 }

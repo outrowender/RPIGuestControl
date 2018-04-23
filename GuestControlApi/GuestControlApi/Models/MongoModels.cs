@@ -44,21 +44,19 @@ namespace GuestControlApi.Models
 
         [BsonId]
         public ObjectId _id { get; set; }
+        public string Usuario { get; set; }
+        public string Departamento { get; set; }
+        public string Nome { get; set; }
+        public string Placa { get; set; }
         public DateTime Hora { get; set; }
-        public List<Foto> Fotos { get; set; }
+        public string Obs { get; set; }
+        public List<ArquivoLog> Fotos { get; set; }
+
     }
 
-    public class Foto
+    public class ArquivoLog
     {
-        public Foto()
-        {
-            _id = new ObjectId();
-        }
-
-        [BsonId]
-        public ObjectId _id { get; set; }
-        public BsonObjectId Registro { get; set; }
+        public ObjectId FileId { get; set; }
+        public string Descricao { get; set; }
     }
-
-
 }

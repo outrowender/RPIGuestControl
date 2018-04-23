@@ -34,12 +34,13 @@ namespace GuestControlApi.Controllers
 
             var payload = new PayloadJwt
             {
-                subId = user._id.ToString(),
+                subId = user.Usuario,
                 sub = user.Email,
                 name = user.Nome,
                 roles = new List<string>
                 {
-                    "logger"
+                    "logger",
+                    "admin"
                 }
             };
 
