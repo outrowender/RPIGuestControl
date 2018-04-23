@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GuestControlApi.Auth;
 using GuestControlApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace GuestControlApi
 {
@@ -28,6 +31,37 @@ namespace GuestControlApi
             MongoDbContext.DatabaseName = Configuration.GetSection("MongoConnection:Database").Value;
             MongoDbContext.IsSSL = Convert.ToBoolean(this.Configuration.GetSection("MongoConnection:IsSSL").Value);
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration.GetSection("TokenConfigurations:Issuer").Value,
+                        ValidAudience = Configuration.GetSection("TokenConfigurations:Audience").Value,
+                        ClockSkew = TimeSpan.Zero,
+                        IssuerSigningKey = JwtModels.Create(Configuration.GetSection("TokenConfigurations:Secret").Value)
+                    };
+
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnAuthenticationFailed = context =>
+                        {
+                            Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                            return Task.CompletedTask;
+                        },
+                        OnTokenValidated = context =>
+                        {
+                            Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
+
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc();
         }
 
@@ -39,6 +73,13 @@ namespace GuestControlApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyOrigin());
+
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
