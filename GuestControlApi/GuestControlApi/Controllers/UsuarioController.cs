@@ -74,7 +74,6 @@ namespace GuestControlApi.Controllers
 
         [HttpGet]
         [Route("ok")]
-        [Authorize(Roles = "logger")]
         public IActionResult ok()
         {
             return StatusCode(200, "foice");

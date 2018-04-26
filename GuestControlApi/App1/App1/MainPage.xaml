@@ -2,25 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:App1"
-             x:Class="App1.MainPage">
+             x:Class="App1.MainPage"
+             Title="Portaria">
 
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+        <StackLayout HorizontalOptions="Fill" 
+                     VerticalOptions="Center" 
+                     Orientation="Vertical" 
+                     Padding="30" 
+                     Spacing="40">
 
             <StackLayout Orientation="Vertical" Spacing="10">
-                <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email"   
-                           PlaceholderColor="White" HeightRequest="40"   
-                           Keyboard="Email"  
-                           TextColor="White"/>
-                <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Senha"   
-                           PlaceholderColor="White" HeightRequest="40"   
-                           IsPassword="True"  
-                           TextColor="White"/>
+                <Entry x:Name="TxtUsername" 
+                       Placeholder="Usuario"
+                       Text="wender.galvao"
+                       HeightRequest="40"   
+                       Keyboard="Email"/>
+
+                <Entry x:Name="TxtPassword"  Placeholder="Senha"   
+                       HeightRequest="40"
+                       Text="aqaqaq"
+                       IsPassword="True"/>
             </StackLayout>
 
-            <Button Command="{Binding SubmitCommand}" Text="aaaaaaaaaaa" TextColor="White"  
-                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="#088da5" />
+            <Button Clicked="Button_OnClicked" Text="Login" />
+
         </StackLayout>
     </ContentPage.Content>
 

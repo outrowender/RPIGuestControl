@@ -13,7 +13,7 @@ namespace App1
 		{
 			InitializeComponent();
 
-			MainPage = new App1.MainPage();
+			MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()
@@ -30,5 +30,6 @@ namespace App1
 		{
 			// Handle when your app resumes
 		}
-	}
+
+    }
 }

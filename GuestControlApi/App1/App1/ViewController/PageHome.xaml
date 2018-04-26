@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.ViewController.PageHome"
+             Title="Fotos">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10"
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="Center">
+
+                <ActivityIndicator 
+                IsVisible="True" 
+                IsRunning="false"
+                x:Name="ActivityIndicator"></ActivityIndicator>
+                <Label HorizontalTextAlignment="Center"
+                   Text="Novo registro"
+                   x:Name="LabelInfo"></Label>
+
+                <Button
+                Text="Placa" 
+                WidthRequest="100" 
+                HeightRequest="50" 
+                BorderColor="Black" 
+                TextColor="Black" 
+                BorderWidth="1"
+                x:Name="ButtonPlaca"
+                Clicked="ButtonPlaca_OnClicked">
+                </Button>
+                <Button
+                Text="Carro" 
+                WidthRequest="100" 
+                HeightRequest="50" 
+                BorderColor="Black" 
+                TextColor="Black" 
+                BorderWidth="1"
+                x:Name="ButtonCarro"
+                Clicked="ButtonCarro_OnClicked">
+                </Button>
+                <Button
+                Text="Documento frente" 
+                WidthRequest="100" 
+                HeightRequest="50" 
+                BorderColor="Black" 
+                TextColor="Black" 
+                BorderWidth="1"
+                x:Name="ButtonDocFrontal"
+                Clicked="ButtonDocFrontal_OnClicked">
+                </Button>
+                <Button
+                Text="Documento verso" 
+                WidthRequest="100" 
+                HeightRequest="50" 
+                BorderColor="Black" 
+                TextColor="Black" 
+                BorderWidth="1"
+                x:Name="ButtonDocVerso"
+                Clicked="ButtonDocVerso_OnClicked">
+                </Button>
+
+                <Entry Placeholder="Cpf do motorista"
+                       Keyboard="Numeric"
+                       x:Name="EntryCpf"
+                       TextChanged="EntryCpf_OnTextChanged">
+
+                </Entry>
+
+                <Button Text="Enviar tudo"
+                    x:Name="ButtonEnviarFotos"
+                    Clicked="ButtonEnviarFotos_OnClicked"
+                    IsEnabled="False">
+                </Button>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
