@@ -21,7 +21,7 @@
 
                 <Entry x:Name="TxtPassword"  Placeholder="Senha"   
                        HeightRequest="40"
-                       Text="aqaqaq"
+                       Text="wndrptrckone"
                        IsPassword="True"/>
             </StackLayout>
 
